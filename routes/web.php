@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\blogController;
+use App\Http\Controllers\stdController;
 use App\Http\Controllers\taskController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
@@ -28,4 +30,14 @@ Route::get('/', function () {
 
 Route::get('taskCreate/', [taskController::class , 'create']);
 Route::post('profile/', [taskController::class , 'store']);
-    
+
+Route::get('blog', [blogController::class ,'create' ]);
+Route::post('blog/store', [blogController::class ,'store' ]);
+Route::get('myblogs' , [blogController::class , "index"]);
+Route::get('edit{id}',[blogController::class , "edit" ]);
+
+// student routes
+
+Route::get('student/create' , [stdController::class , 'create']);
+Route::post('student/store' , [stdController::class , 'store']);
+Route::get('student/index' , [stdController::class , 'index']);

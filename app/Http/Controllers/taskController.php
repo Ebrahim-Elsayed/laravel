@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 
 class taskController extends Controller
 {
     //
+   
+
     public function create(){
         return view("task");
     }
 
     public function store(Request $request){
+
+    
+        
 
         $data = $this->validate($request , [
                 "name"     => "required|string|min:5|regex:/(^([a-zA-Z]+))/u",
@@ -26,10 +30,10 @@ class taskController extends Controller
 
 
         $image = $request->file('image');
-        $rename = time().'.'.$image->getClientOriginalExtension();
-        $image->move(public_path("images"),$rename);
+        $finalname = time().'.'.$image->getClientOriginalExtension();
+        $image->move(public_path("images"),$finalname);
 
-        
+
         // return view('profile' , compact('data'));
         return view('profile' , ['userdata' , $data]);
     }
